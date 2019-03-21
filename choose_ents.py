@@ -1,6 +1,3 @@
-# -*- coding: future_fstrings -*-
-from __future__ import print_function
-
 import spacy
 import textract
 import easygui as g
@@ -155,8 +152,8 @@ def main(path):
     def browse_by_label(choices, redact):
         """Choose entities to redact based on the spacy ent.label_."""
 
-        # Browse by ent label
-        print(type(redact))
+        # # Browse by ent label
+        # print(type(redact))
         # If there are ents remaining that aren't in the redaction dict, show labels for redaction.
         if len(choices) > 0:
             msg = "These are the entity labels we found in this document. Please choose the ones you want to browse."
