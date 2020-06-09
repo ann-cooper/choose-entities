@@ -1,7 +1,9 @@
 .vscode/
 __pycache__/
+.pytest_cache/
 .idea/
 .DS_Store
 *.pyc
+*.egg-info/
 redactions.json
 myenv/
