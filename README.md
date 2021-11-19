@@ -7,7 +7,7 @@ PDF redaction preperation tool
 ## Create venv locally
 - To create a virtual environment in this project directory:
     - `cd choose-entities`
-    - `./create_venv.sh`
+    - `python3 -m venv venv`
 - Activate the venv: `source myenv/bin/activate`
 
 ## Install and run
