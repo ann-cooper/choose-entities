@@ -5,15 +5,15 @@ from setuptools import find_packages, setup
 
 def get_required():
 
-    with open("requirements.txt", "r") as f:
+    with open("requirements/main.txt", "r") as f:
         reqs = f.readlines()
 
     clean_reqs = [x for x in reqs if re.search(r"^\w", x)]
-    return [re.sub(r";", "", x.split(" ")[0]) for x in clean_reqs]
+    return [x.split('==')[0] for x in clean_reqs]
 
 
 setup(
-    name="HelloWorld",
+    name="entitychooser",
     version="0.1",
     packages=find_packages(),
     install_requires=get_required(),
