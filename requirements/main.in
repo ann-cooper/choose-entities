@@ -1,0 +1,6 @@
+spacy
+easygui
+pytest
+textract
+pathlib
+pytest-cov
