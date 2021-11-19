@@ -1,8 +1,6 @@
 """Reference: https://docs.python-guide.org/writing/logging/
 """
 import logging
-import os
-import sys
 
 
 def get_logger(name: str, level: int = logging.DEBUG):
@@ -20,8 +18,8 @@ def get_logger(name: str, level: int = logging.DEBUG):
 
     log_handler = logging.StreamHandler()
     log_formatter = logging.Formatter(
-                "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
-            )
+        "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+    )
     log_handler.setFormatter(log_formatter)
     logger.addHandler(log_handler)
     logger.propagate = False

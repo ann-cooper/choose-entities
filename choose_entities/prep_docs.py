@@ -5,6 +5,7 @@ from pathlib import Path
 
 import spacy
 import textract
+
 from choose_entities import logger
 
 logger = logger.get_logger(__name__)
@@ -139,7 +140,14 @@ class LabelDocs:
     def run_label_docs(self):
         """Label docs and collect label metadata."""
         logger.info("Starting to label docs.")
-        for stage in [self.label_ents, self.collect_ents, self.count_ents, self.seen_labels, self.out_index, self.inv_index]:
+        for stage in [
+            self.label_ents,
+            self.collect_ents,
+            self.count_ents,
+            self.seen_labels,
+            self.out_index,
+            self.inv_index,
+        ]:
             try:
                 stage()
             except Exception as err:
@@ -150,7 +158,6 @@ class LabelDocs:
 def main(path):
     docs_labels = LabelDocs(path)
     return docs_labels.run_label_docs()
-
 
 
 if __name__ == "__main__":
