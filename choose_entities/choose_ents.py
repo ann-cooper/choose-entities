@@ -283,6 +283,7 @@ class SearchEnts:
 
 if __name__ == "__main__":
     labeled_text = LabelDocs(sys.argv[1])
+    labeled_text.run_label_docs()
     SearchEnts(
         ents=labeled_text.ents,
         label_list=labeled_text.label_list,

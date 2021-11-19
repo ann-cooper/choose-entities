@@ -46,7 +46,7 @@ class Redaction:
         ask = g.multchoicebox(msg, title, [x for x in self.redact.keys()])
         g.msgbox(ask, "Label Choices", ok_button="Continue")
 
-        return ask
+        return ask if ask else []
 
     def prep_outfile(self, edits=[]):
         """Write the entities chosen for redaction to json file and add the entity label and ask_me flag."""

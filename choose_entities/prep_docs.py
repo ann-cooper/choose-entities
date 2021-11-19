@@ -5,6 +5,9 @@ from pathlib import Path
 
 import spacy
 import textract
+from choose_entities import logger
+
+logger = logger.get_logger(__name__)
 
 
 class PrepDocs:
@@ -75,12 +78,13 @@ class LabelDocs:
 
     def __init__(self, path):
         self.docs = PrepDocs(path).prep_docs()
-        self.label_list = self.label_ents()
-        self.ents = self.collect_ents()
-        self.count = self.count_ents()
-        self.labels = self.seen_labels()
-        self.index = self.out_index()
-        self.inv_idx = self.inv_index()
+
+        self.label_list = None
+        self.ents = None
+        self.count = None
+        self.labels = None
+        self.index = None
+        self.inv_idx = None
 
     def label_ents(self):
         """Collect lists of ents and their labels from spacy docs.
@@ -101,35 +105,52 @@ class LabelDocs:
 
     def collect_ents(self):
         """Extract ents from label_list."""
-        return [re.sub(r"\n{1,}", " ", x[1]) for x in self.label_list]
+        self.ents = [re.sub(r"\n{1,}", " ", x[1]) for x in self.label_list]
+        return self.ents
 
     def count_ents(self):
         """Record total number of occurrences for each ent.text."""
         ents = [x.strip() for x in self.ents]
-        return Counter(ents)
+        self.count = Counter(ents)
+
+        return self.count
 
     def seen_labels(self):
         """Return list of unique entity labels."""
-        return list(set([tup[0] for tup in self.label_list]))
+        self.labels = list(set([tup[0] for tup in self.label_list]))
+        return self.labels
 
     def out_index(self):
         """Return a dictionary of labels to ent.texts as strings."""
         labels = self.label_list
-        label_index = {}
+        self.index = {}
         for tup in labels:
-            if tup[0] not in label_index:
-                label_index[tup[0]] = [re.sub(r"\n{1,}", " ", tup[1])]
+            if tup[0] not in self.index:
+                self.index[tup[0]] = [re.sub(r"\n{1,}", " ", tup[1])]
             else:
-                label_index[tup[0]].append(re.sub(r"\n{1,}", " ", tup[1]))
-        return label_index
+                self.index[tup[0]].append(re.sub(r"\n{1,}", " ", tup[1]))
+        return self.index
 
     def inv_index(self):
         """Return a dictionary of ent.text to label."""
-        return {v: k for k, values in self.index.items() for v in values}
+        self.inv_idx = {v: k for k, values in self.index.items() for v in values}
+        return self.inv_idx
+
+    def run_label_docs(self):
+        """Label docs and collect label metadata."""
+        logger.info("Starting to label docs.")
+        for stage in [self.label_ents, self.collect_ents, self.count_ents, self.seen_labels, self.out_index, self.inv_index]:
+            try:
+                stage()
+            except Exception as err:
+                logger.warning(err)
+                raise err
 
 
 def main(path):
-    return LabelDocs(path)
+    docs_labels = LabelDocs(path)
+    return docs_labels.run_label_docs()
+
 
 
 if __name__ == "__main__":
