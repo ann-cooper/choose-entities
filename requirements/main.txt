@@ -23,7 +23,7 @@ certifi==2021.10.8
     # via requests
 chardet==3.0.4
     # via
-    #   pdfminer.six
+    #   pdfminer-six
     #   textract
 charset-normalizer==2.0.7
     # via requests
@@ -41,7 +41,7 @@ cymem==2.0.6
 docx2txt==0.8
     # via textract
 easygui==0.98.2
-    # via -r requirements/main.in
+    # via -r main.in
 ebcdic==1.1.1
     # via extract-msg
 ebooklib==0.17.1
@@ -69,7 +69,7 @@ murmurhash==1.0.6
     #   preshed
     #   spacy
     #   thinc
-numpy==1.21.4
+numpy==1.22.0
     # via
     #   blis
     #   spacy
@@ -81,10 +81,10 @@ packaging==21.3
     #   pytest
     #   spacy
 pathlib==1.0.1
-    # via -r requirements/main.in
+    # via -r main.in
 pathy==0.6.1
     # via spacy
-pdfminer.six==20191110
+pdfminer-six==20191110
     # via textract
 pillow==8.4.0
     # via python-pptx
@@ -97,7 +97,7 @@ preshed==3.0.6
 py==1.11.0
     # via pytest
 pycryptodome==3.11.0
-    # via pdfminer.six
+    # via pdfminer-six
 pydantic==1.8.2
     # via
     #   spacy
@@ -106,10 +106,10 @@ pyparsing==3.0.6
     # via packaging
 pytest==6.2.5
     # via
-    #   -r requirements/main.in
+    #   -r main.in
     #   pytest-cov
 pytest-cov==3.0.0
-    # via -r requirements/main.in
+    # via -r main.in
 python-pptx==0.6.21
     # via textract
 pytz-deprecation-shim==0.1.0.post0
@@ -120,16 +120,16 @@ six==1.12.0
     # via
     #   ebooklib
     #   imapclient
-    #   pdfminer.six
+    #   pdfminer-six
     #   textract
 smart-open==5.2.1
     # via pathy
 sortedcontainers==2.4.0
-    # via pdfminer.six
+    # via pdfminer-six
 soupsieve==2.3.1
     # via beautifulsoup4
 spacy==3.2.0
-    # via -r requirements/main.in
+    # via -r main.in
 spacy-legacy==3.0.8
     # via spacy
 spacy-loggers==1.0.1
@@ -141,7 +141,7 @@ srsly==2.4.2
     #   spacy
     #   thinc
 textract==1.6.4
-    # via -r requirements/main.in
+    # via -r main.in
 thinc==8.0.13
     # via spacy
 toml==0.10.2
