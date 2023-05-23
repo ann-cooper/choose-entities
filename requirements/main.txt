@@ -114,7 +114,7 @@ python-pptx==0.6.21
     # via textract
 pytz-deprecation-shim==0.1.0.post0
     # via tzlocal
-requests==2.26.0
+requests==2.31.0
     # via spacy
 six==1.12.0
     # via
